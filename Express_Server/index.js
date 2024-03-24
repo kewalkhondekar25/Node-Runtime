@@ -14,7 +14,7 @@ const sum = (n) => {
 app.get('/', (req, res) => {
     const param = req.query.n;
     const ans = sum(param);
-    res.send('hello world' + ans);
+    res.send(`hello world  ${ans}`);
 });
 
 app.listen(port, () => {
