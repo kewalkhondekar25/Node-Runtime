@@ -1,5 +1,23 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+
+//using middleware
+const verifyUser = (req, res, next) => {
+    const userName = req.headers.username;
+    const userPwd = req.headers.password;
+    // const age = req.query.age;
+    if(userName === 'john' && userPwd === 'john69'){
+        res.json({
+            msg: 'user authorize'
+        });
+        next();
+    }else{
+        res.json({
+            msg: 'unauthorize user'
+        });
+    }
+}
 
 app.get('/', (req, res) => {
     //query param
@@ -33,7 +51,13 @@ app.get('/check', (req, res) => {
     }
 });
 
-// app.get('/middleware', (req, res))
+//using middleware
+app.get('/middleware', verifyUser, (req, res) => {
+    res.json({
+        msg: 'ok'
+    });
+});
+
 app.listen(8080, () => {
     console.log('server is listening on port 8080...');
 })
