@@ -47,6 +47,20 @@ app.post('/signin', (req, res) => {
     res.json({
         token
     })
+});
+
+app.get('/agents', (req, res) => {
+    const token = req.headers.authorization;
+    try {
+        const decode = jwt.verify(token, jwtPassword);
+        res.json({
+            decode
+        })
+    } catch (error) {
+        res.json({
+            msg: error
+        })
+    }
 })
 
 app.listen(port, () => {
