@@ -17,7 +17,16 @@ const verifyUser = (req, res, next) => {
             msg: 'unauthorize user'
         });
     }
-}
+};
+
+let count = 0;
+const calculateRequests = (req, res, next) => {
+    count++;
+    console.log(`visits: ${count}`);
+    next();
+};
+app.use(calculateRequests);
+
 
 app.get('/', (req, res) => {
     //query param
