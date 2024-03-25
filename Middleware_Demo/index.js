@@ -67,6 +67,13 @@ app.get('/middleware', verifyUser, (req, res) => {
     });
 });
 
+//global catch
+app.use((error, req, res, next) => {
+    res.json({
+        msg: 'something went wrong'
+    })
+})
+
 app.listen(8080, () => {
     console.log('server is listening on port 8080...');
 })
