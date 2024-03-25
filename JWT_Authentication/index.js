@@ -54,7 +54,7 @@ app.get('/agents', (req, res) => {
     try {
         const decode = jwt.verify(token, jwtPassword);
         res.json({
-            decode
+            agent: agent.filter(item => item.name !== decode.name)
         })
     } catch (error) {
         res.json({
