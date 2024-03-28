@@ -52,8 +52,8 @@ router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     try {
         const user = await User.findOne({
             username: req.headers.username
-        })
-        const courses = await Course.find({_id: {"$in": user.purchasedCourses}})
+        });
+        const courses = await Course.find({_id: {"$in": user.purchasedCourses}});
         res.json({
             courses: courses
         })
