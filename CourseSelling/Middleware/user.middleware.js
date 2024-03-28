@@ -1,6 +1,6 @@
 const {User} = require('../Models/index')
 
-const userMiddleware = (req, res) => {
+const userMiddleware = (req, res, next) => {
     const username = req.headers.username;
     const password = req.headers.password;
     User.findOne({
